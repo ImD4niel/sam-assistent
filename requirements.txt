@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+langchain
+langchain-community
+langchain-ollama
+langchain-chroma
+pydantic
+python-dotenv
+pytesseract
+pillow
+PyPDF2
+ddgs 

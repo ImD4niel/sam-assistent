@@ -1,23 +1,16 @@
 # Sam Assistant Chatbot
 
-<<<<<<< HEAD
 A plug-and-play AI chatbot using FastAPI (Python) for the backend and React for the frontend. The backend uses Ollama for open-source LLMs (like Llama 2, Mistral). The frontend is a floating chat widget, ready for integration into any web app or ERPNext.
-=======
-A plug-and-play AI chatbot using FastAPI (Python) for the backend and React for the frontend. The backend uses Ollama for open-source LLMs (like Llama 2). The frontend is a floating chat widget, ready for integration into any web app or ERPNext.
->>>>>>> 17966a79e03961acba85381acb2e21aedcc1aa1d
 
 ---
 
 ## Features
 - Free, open-source LLM backend (Ollama)
 - Modern floating chatbot widget (React)
-<<<<<<< HEAD
 - **Real-time streaming responses** (see your answer appear word-by-word)
 - File and image upload with OCR and document extraction
 - RAG (Retrieval-Augmented Generation) with ChromaDB
-- Web search integration (DuckDuckGo)
-=======
->>>>>>> 17966a79e03961acba85381acb2e21aedcc1aa1d
+- **Web search integration (DuckDuckGo)** - Get real-time information from the web
 - Easy REST API integration
 - Ready for ERPNext or any web app
 
@@ -36,7 +29,6 @@ pip install -r requirements.txt
   ```sh
   ollama serve
   ```
-<<<<<<< HEAD
 - Pull and run a model (e.g., Mistral, Phi-3, or Llama 2):
   ```sh
   ollama pull mistral
@@ -50,10 +42,6 @@ pip install -r requirements.txt
   Or for Llama 2 (requires more RAM):
   ```sh
   ollama pull llama2
-=======
-- Pull and run a model (e.g., Llama 2):
-  ```sh
->>>>>>> 17966a79e03961acba85381acb2e21aedcc1aa1d
   ollama run llama2
   ```
 
@@ -66,7 +54,6 @@ Or (alternative):
 uvicorn backend.main:app --reload
 ```
 - The backend will run at `http://localhost:8000`
-<<<<<<< HEAD
 - The backend uses the model specified by the environment variable `OLLAMA_MODEL` (default: `mistral`).
 - If you get a memory error (e.g., "model requires more system memory than is available"), use a smaller model like `mistral` or `phi3`.
 - To change the model, update the `OLLAMA_MODEL` in your `.env` file or in `backend/main.py`.
@@ -79,8 +66,17 @@ uvicorn backend.main:app --reload
   curl -X POST http://localhost:8000/chat/stream -H "Content-Type: application/json" -d '{"message": "Hello!"}'
   ```
 - The system prompt is prepended to the user message for best LLM context.
-=======
->>>>>>> 17966a79e03961acba85381acb2e21aedcc1aa1d
+
+### 1.5. **Web Search Integration**
+- **DuckDuckGo Search**: The chatbot automatically uses DuckDuckGo for web searches when needed
+- **No API Key Required**: DuckDuckGo is free and privacy-focused
+- **Smart Detection**: Automatically triggers web search for queries containing keywords like:
+  - News, latest, current events
+  - Weather, stock prices, crypto
+  - Sports, entertainment, technology
+  - Real-time information requests
+- **Dual Search**: Combines general web search and news search for comprehensive results
+- **Manual Mode**: You can force web search by setting `mode: 'web'` in your request
 
 ---
 
@@ -125,10 +121,7 @@ npm start
 ```
 - The frontend will run at `http://localhost:3000`
 - You should see a floating chat widget at the bottom right
-<<<<<<< HEAD
 - **Now supports real-time streaming answers!**
-=======
->>>>>>> 17966a79e03961acba85381acb2e21aedcc1aa1d
 
 ---
 
@@ -169,10 +162,12 @@ git push -u origin main
 - Open `http://localhost:3000` in your browser.
 - Click the floating chat button, type a message, and interact with the AI.
 - The backend must be running and Ollama must be serving a model for the chatbot to work.
-<<<<<<< HEAD
-- **Enjoy real-time, streaming answers!**
-=======
->>>>>>> 17966a79e03961acba85381acb2e21aedcc1aa1d
+- **Web Search Examples**:
+  - "What's the latest news about AI?"
+  - "What's the weather in New York?"
+  - "Tell me about the latest iPhone release"
+  - "What are the current Bitcoin prices?"
+- **Enjoy real-time, streaming answers with web search capabilities!**
 
 ---
 
@@ -185,7 +180,6 @@ git push -u origin main
 ## Troubleshooting
 - If the chatbot says "couldn't connect to AI backend":
   - Ensure the backend is running (`python backend/main.py`)
-<<<<<<< HEAD
   - Ensure Ollama is running and the model is available (`ollama run mistral` or `ollama run phi3`)
   - If you see a memory error, switch to a smaller model (see above)
   - Check browser console/network tab for errors
@@ -193,16 +187,12 @@ git push -u origin main
   - Make sure you are using the `/chat/stream` endpoint in both backend and frontend
   - Make sure your browser supports streaming responses (most modern browsers do)
   - Check backend logs for errors
-=======
-  - Ensure Ollama is running and the model is available (`ollama run llama2`)
-  - Check browser console/network tab for errors
->>>>>>> 17966a79e03961acba85381acb2e21aedcc1aa1d
+- If web search is not working:
+  - Check your internet connection
+  - The `ddgs` library should be installed (included in requirements.txt)
+  - Check backend logs for any DuckDuckGo API errors
 - Do **not** commit `node_modules` to git
 
 ---
 
-<<<<<<< HEAD
-**Enjoy your AI chatbot with real-time streaming!** 
-=======
-**Enjoy your AI chatbot!** 
->>>>>>> 17966a79e03961acba85381acb2e21aedcc1aa1d
+**Enjoy your AI chatbot with real-time streaming and web search capabilities!**

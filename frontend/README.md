@@ -68,3 +68,14 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+# Voice Features
+
+## Speech-to-Text (Voice Input)
+- Click the 🎤 microphone button to start speaking.
+- Your speech will be transcribed and appear in the input box.
+
+## Text-to-Speech (Voice Output)
+- After the assistant responds, click the 🔊 speaker button to hear the response read aloud.
+
+These features use your browser's built-in Web Speech API and SpeechSynthesis API. For best results, use Chrome or Edge.

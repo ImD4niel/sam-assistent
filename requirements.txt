@@ -9,4 +9,11 @@ python-dotenv
 pytesseract
 pillow
 PyPDF2
-ddgs 
+duckduckgo-search
+sqlalchemy
+psycopg2-binary
+beautifulsoup4
+markdownify
+requests
+langchain-text-splitters
+python-multipart 

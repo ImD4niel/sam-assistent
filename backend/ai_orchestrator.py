@@ -13,6 +13,13 @@ import re
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import JsonOutputParser, StrOutputParser
 from langchain_ollama import OllamaLLM
+try:
+    from langchain_openai import ChatOpenAI
+    from langchain_google_genai import ChatGoogleGenerativeAI
+except ImportError:
+    ChatOpenAI = None
+    ChatGoogleGenerativeAI = None
+
 from duckduckgo_search import DDGS
 import io
 from backend.browser_tool import BrowserTool
@@ -184,9 +191,26 @@ class AIOrchestrator:
     Mimics 'System 2' thinking.
     """
     
-    def __init__(self, llm_model: str = "mistral", offline_mode: bool = False):
-        self.llm = OllamaLLM(model=llm_model, temperature=0.2) # Low temp for reasoning
+    def __init__(self, provider: str = "ollama", model_name: str = "llama2", offline_mode: bool = False):
         self.offline_mode = offline_mode
+        self.provider = provider.lower()
+        self.model_name = model_name
+        
+        logger.info(f"Initializing AI Orchestrator with provider: {self.provider}, model: {self.model_name}")
+        
+        if self.provider == "openai":
+            if not ChatOpenAI: raise ImportError("langchain-openai not installed.")
+            # Expects OPENAI_API_KEY in env
+            self.llm = ChatOpenAI(model=self.model_name, temperature=0.2)
+            
+        elif self.provider == "gemini":
+            if not ChatGoogleGenerativeAI: raise ImportError("langchain-google-genai not installed.")
+            # Expects GOOGLE_API_KEY in env
+            self.llm = ChatGoogleGenerativeAI(model=self.model_name, temperature=0.2)
+            
+        else: # Default to Ollama
+            self.llm = OllamaLLM(model=self.model_name, temperature=0.2)
+
         self.tools = {
             "calculator": CalculatorTool(),
             "web_search": OfflineAwareWebSearchTool(offline_mode=offline_mode),

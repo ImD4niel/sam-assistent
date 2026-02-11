@@ -106,7 +106,14 @@ except ImportError:
 
 # Initialize the sophisticated AI orchestrator
 is_offline = os.getenv("OFFLINE_MODE", "false").lower() == "true"
-orchestrator = AIOrchestrator(llm_model=os.getenv("OLLAMA_MODEL", "llama2"), offline_mode=is_offline)
+ai_provider = os.getenv("AI_PROVIDER", "ollama")
+ai_model_name = os.getenv("AI_MODEL", "llama2")
+
+orchestrator = AIOrchestrator(
+    provider=ai_provider,
+    model_name=ai_model_name,
+    offline_mode=is_offline
+)
 
 # Store conversation contexts (in production, use a proper database)
 conversation_contexts = {}

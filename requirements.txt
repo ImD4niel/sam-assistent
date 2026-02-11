@@ -16,4 +16,6 @@ beautifulsoup4
 markdownify
 requests
 langchain-text-splitters
-python-multipart 
+python-multipart
+langchain-openai
+langchain-google-genai
